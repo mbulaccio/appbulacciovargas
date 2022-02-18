@@ -1,0 +1,30 @@
+.NavBar {
+    background: rgb(3, 11, 48);
+    width: 100%;
+    height: 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;    
+    justify-content: space-around;
+    align-items: center;  
+}
+
+
+h1{
+    top: 20px;
+    color:white;
+    font-weight: 150;
+    font-size: 30px;
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;    
+}
+
+.Item {
+    display: inline-block;
+    margin: 0 10px;   
+    color: white;
+    line-height: 80px;
+}
+
