@@ -5,7 +5,7 @@ import { useState } from 'react'
 const ItemCount = ({ stock, initial, addtoCart }) => {
     const [count, setCount] = useState(0);
 
-    console.log(count);
+    // console.log(count);
 
     const decrement = () => {
         count > initial && setCount(count - 1) //Si el contador es mayor al stock será menos 1

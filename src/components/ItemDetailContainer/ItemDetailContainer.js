@@ -1,23 +1,42 @@
 import { useEffect, useState } from 'react';
 import { getProduct } from '../../asyncmock';
-import ItemDetail from '../ItemListContainer/ItemDetail/ItemDetail';
+import ItemDetail from '../ItemDetail/ItemDetail';
+import { useParams } from 'react-router-dom';
+
 
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState([]) //Hacer el estado con la funcion que retorne todo el producto
+    const [product, setProduct] = useState() //Hacer el estado con la funcion que retorne todo el producto
+    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        getProduct().then((res) => {
-            setProduct(res)
-        console.log (res , "Este es"); 
-        })
-    }, []) 
+    const {productId} = useParams()
     
-    console.log (product , "Despues del use effect")
-    return (
-        <div>            
-        <ItemDetail product = {product} />
+    useEffect(() => {
+        getProduct(productId).then(item => {
+            setProduct(item)
+        }).catch(err => {
+            console.log(err)
+        }).finally(() => {
+            setLoading(false)
+        })
+
+        return (() => {
+            setProduct()
+        })
+
+    }, [productId])
+
+    return ( 
+    
+        <div className = "ItemDetailContainer" > 
+            {
+            loading ?
+            <h1>Buscando</h1> :
+            product ?
+            <ItemDetail product = {product}/>: 
+            <h1>No hay stock</h1> 
+        } 
         </div>
     )
 }
 
-export default ItemDetailContainer; 
+export default ItemDetailContainer;
