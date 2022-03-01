@@ -1,4 +1,4 @@
-const products = [
+export const products = [
     { id: 1, name: 'Café Colombia', price: 1900, category: 'cafe' , stock: 20 ,  description: 'Se caracteriza por su sabor dulce, mantecado y su cuerpo vigoroso. Permite disfrutar una sutil nota a quinoto que limpia el paladar. Recuerda a especias dulces como la vainilla.' , img: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/636/304/products/colombia-genoba-web1-c70dcbb2b21fe11d0f16399318985620-320-0.jpg'},
     { id: 2, name: 'Café Guatemala', price: 1900, category: 'cafe' , stock: 20 , description: 'Contiene un dulzor característico de las frutas del bosque. Aroma delicado y levemente floral.' , img:'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/636/304/products/guatemala-amarillo-web1-c7dc234181c005d97816427114370512-320-0.jpg'},
     { id: 3, name: 'Café Perú', price: 1900, category: 'cafe' , stock: 20 , description: 'Se distingue por su excepcional aroma especiado acompañado por una sutil cáscara de lima.' , img:'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/636/304/products/peru-verde-web1-c9df34aacfedf718d816361060003347-320-0.jpg'},

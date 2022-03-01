@@ -1,51 +1,95 @@
 .cart-container{
-    margin: 20px auto;
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap; 
-    
+  padding: 5rem 3rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit);
+  gap: 3rem 3rem;
+  box-sizing: border-box ;    
 }
 
 .ItemCart{
-  width: 200px;
-  height: 400px;
-  border: 1px solid #090e4e;
-  border-radius: 5px;
-  overflow: hidden;  
-  padding: 10px;
-  margin: 40px 20px;
-  background-color: white; 
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 1px 10px 10px 2px rgba(0, 0, 0, 0.1);
+  border: 6px solid transparent;
+  cursor: pointer;
+  border-radius: 5px;  
 }
 
-.ImgCart {
+.ImgCart img {
   width: 100%;
-  max-width: 300px;
-  min-height: 200px;  
-  object-fit: cover;
-  object-position: center;
-}
+}  
 
 .NameCart {  
   margin: 10px 0px;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   color: black; 
 }
 
-.product-price {
-  margin: 10px 0px;
-  padding-bottom: 20px;
+.productFooter p{
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.555);
+  text-transform: uppercase;
   font-size: 18px;
-  line-height: 30px;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  color: #1a202c;
+}
+
+/*.button {
+  width: 100%;
+  height: 45px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem 2rem;
+  background-color: #08a05c;
+
 }
 
 .item-button {
-    background-color: white;
-    color: black;
-    border: 2px solid rgb(4, 13, 65); 
-    padding: 10px 10px;
-    margin-top: 10px;
-    border-radius: 8px;    
-    right: 30px;
-  }
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 5px; 
+  
+}*/
+
+.bottom .btn{
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.bottom button{
+  background-color: blue;  
+  width: 100%;
+  margin: 0 auto;
+  font-size: 1rem;
+  color: white;
+  font-weight: 200;
+}
+
+.bottom div{
+  background-color: green;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  margin-left: -2rem;
+  border-radius: 5px;
+}
+
+.bottom div a{
+  color: white;
+  font-weight: 200;
+}
+
+.bottom div a:hover{
+  color: white;
+}
+
+

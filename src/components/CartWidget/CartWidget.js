@@ -6,7 +6,7 @@ const CartWidget = () => {
   return(
       <button className="CartWidget">
       <img src={'./images/carrito.png'} alt="carrito" style={{width:"30px"}}/>
-      0
+      <span className='itemTotal'>0</span>
       </button>
     );
 }
