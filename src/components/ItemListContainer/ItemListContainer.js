@@ -1,26 +1,41 @@
 import './ItemListContainer.css';
 import { useEffect, useState } from 'react';
-import { getProducts } from '../../asyncmock';
 import { useParams } from 'react-router-dom';   
 import ItemList from '../ItemList/ItemList';
+import { getDocs, collection, query, where } from 'firebase/firestore';
+import { firestoreDb } from '../../services/firebase/firebase';
 
 
 const ItemListContainer = () => {
-    const [products, setProducts] = useState( [] ) // Igual que el itemdetail pero en plural
+    const [products, setProducts] = useState( [] ) 
     const [loading, setLoading] = useState(true)
 
     const { categoryId } = useParams();
      
     useEffect(() => {
-        getProducts().then(item => {
-            const prods = categoryId? item.filter(prod => prod.category === categoryId) : item;
-            setProducts(prods)
-        }).catch(err => {
-            console.log(err)
+
+        setLoading(true)
+
+        const collectionRef = categoryId ?
+            query(collection(firestoreDb, 'products'), where('category', '==', categoryId)) :
+            collection(firestoreDb, 'products')
+
+        getDocs(collectionRef).then(response => { // Le pedimos a fire que nos traiga la colección de productos
+            const products = response.docs.map(doc => {  // La respuesta la formateamos
+                console.log(doc)
+                return { id: doc.id, ...doc.data()}     // y la retorna con la propiedad id y doc.data
+             })
+               console.log(products)
+               setProducts(products)   // Set products de mi estado             
+                
         }).finally(() => {
             setLoading(false)
         })
 
+            return (() => {
+            setProducts()        
+        }
+        )
     }, [ categoryId])
 
     return (     
@@ -35,32 +50,6 @@ const ItemListContainer = () => {
         </div>
     )
 }
-
-/*const ItemListContainer = ({ greeting }) => {
-    const [products, setProducts] = useState([]) // Iniciamos el estado con un array vacío   
-    //const addtoCart = (count) => {
-    //console.log(`Se agregan al carrito ${count} productos`);    
-
-    useEffect(() => { 
-        getProducts().then(products => { // Llamo a la funcion que creamos de simulación de llamada
-            // console.log(products)
-            setProducts(products) // Guardamos los productos en el estado vacío
-        })
-    }, [])
-
-    const handleOnAdd = (quantity) => {
-        console.log(`Se agregaron ${quantity} productos`)
-    }   
-
-    return (
-        <div className='ItemListcontainer'>
-            <h1 className='Saludo'>{greeting}</h1>
-            <ItemCount stock={10} initial={0} onAdd={handleOnAdd}/>
-            <ItemList products={products}/> 
-                    
-        </div>
-    )*/
-
 
 
 export default ItemListContainer
