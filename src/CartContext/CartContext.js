@@ -5,7 +5,7 @@ export const CartContext = createContext(); // Envolvemos la aplicacion
 
 export const CartContextProvider = ({children}) => { // Recibimos como parámetro un children
 
-    const [cart, setCart] = useState ([]); // Inicializamos con un array vacío
+    const [cart, setCart] = useState ([]); // Inicializamos con un array vacío    
 
     useEffect(() => {
         console.log(cart);
@@ -41,13 +41,27 @@ export const CartContextProvider = ({children}) => { // Recibimos como parámetr
         setCart(filtItems)  
     }
 
-    const clear = () => // Limpiamos los items
+    const clear = () => {// Limpiamos los items
         setCart ([])
+    }
+    
+    const getQuantity = () => {
+        return cart.reduce((acc, purchase) => {
+          return acc + purchase.quantity;
+        }, 0);
+      };
+    
+    const getTotalPrice = () => {
+        return cart.reduce((acc, purchase) => {
+          return acc + purchase.price * purchase.quantity;
+        }, 0);
+      };
 
     return (
-        <CartContext.Provider value={{ cart, addItem }}>
+        <CartContext.Provider value={{ cart, addItem, addQuantity, removeItem, getQuantity, getTotalPrice }}>
             {children}
         </CartContext.Provider>
     );       
 };
 
+export default CartContext
