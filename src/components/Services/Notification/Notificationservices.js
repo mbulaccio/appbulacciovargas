@@ -1,44 +1,60 @@
-import { useContext, createContext, Children } from "react"
+import { useState, createContext, useContext } from "react"
 
-const Notification = ({ message = 'prueba'}) => {
-    const NotificationStyles = {
-
+const Notification = ({ message, severity }) => {
+    const notificationStyles = {
+        position: 'absolute',
+        top: 100,
+        right: 5,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 'auto',
+        height: 'auto',
+        // backgroundColor: severity === 'success' ? 'green' : 'red',
+        padding: '10px 20px 10px 20px',
+        color: 'white',
+        borderRadius: '10px'
     }
 
-if (message === ""){
-    return null
-} 
+    const config = true ?
+    {
+        style: notificationStyles,
+        className: severity === 'success' ? 'Success' : 'Error'
+    } : {}
 
-
-return (
-    <div style={notificationStyles}>
-        {message}
-    </div>
-)
+    if(message === '') {
+        return null
+    }
+    
+    return (
+        <div {...config}>
+            {message}
+        </div>
+    )
 }
 
-const Context = createContext ()
+const NotificationContext = createContext()
 
-export const NotificationServicesProvider = () => {
-    const [message, setMessage ] = useState ('')
-    const [severity, setSeverity ] = useState ('')
+export const NotificationServicesProvider = ({children}) => {
+    const [message, setMessage] = useState('')
+    const [severity, setSeverity] = useState('')
 
     const setNotification = (severity, message) => {
         setMessage(message)
         setSeverity(severity)
-        setTimeout (() =>{
-            setMessage ('')
-        }, 5000) 
+        setTimeout(() => {
+            setMessage('')
+        }, 5000)
     }
 
-
     return (
-        <Context.Provider value={setNotification}>
+        <NotificationContext.Provider value={setNotification}>
             <Notification message={message} severity={severity}/>
-            {Children}
-        </Context.Provider>
+            {children}
+        </NotificationContext.Provider>
     )
-
 }
 
-export default NotificationContext
+export const useNotificationServices = () => {
+    return useContext(NotificationContext)
+}

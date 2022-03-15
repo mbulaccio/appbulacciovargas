@@ -41,7 +41,7 @@ export const CartContextProvider = ({children}) => { // Recibimos como parámetr
         setCart(filtItems)  
     }
 
-    const clear = () => {// Limpiamos los items
+    const clearCart = () => {// Limpiamos los items
         setCart ([])
     }
     
@@ -58,7 +58,7 @@ export const CartContextProvider = ({children}) => { // Recibimos como parámetr
       };
 
     return (
-        <CartContext.Provider value={{ cart, addItem, addQuantity, removeItem, getQuantity, getTotalPrice }}>
+        <CartContext.Provider value={{ cart, addItem, clearCart, addQuantity, removeItem, getQuantity, getTotalPrice }}>
             {children}
         </CartContext.Provider>
     );       
