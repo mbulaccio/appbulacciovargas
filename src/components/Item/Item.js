@@ -13,14 +13,11 @@ const Item = ({ product }) => { /*ESTAS SON LAS CARTS DE MI INICIO*/
                 </div>
                 <div className='productFooter'>               
                 <h2 className='product-price'>${product.price}</h2>
-                </div>
-                <div className='bottom'>
-                    <button className='btn'>Agregar</button>                
+                </div>                               
                 <div>
                 <Link to={`/detail/${product.id}`} className='btn'>Ver detalle</Link>
                 </div>                
-                {/* <ItemCount /> */}
-                </div>
+                {/* <ItemCount /> */}                
             </div>
         </div>
     )

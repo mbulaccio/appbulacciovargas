@@ -11,10 +11,12 @@ import { firestoreDb } from '../../services/firebase/firebase';
 import { useNotificationServices } from "../Services/Notification/Notificationservices"
 import ContactForm from "../ContactForm/ContactForm";
 import Togglable from "../Togglable/Togglable";
+import { NavLink } from "react-router-dom";
 
 const Cart = () => {
     const [orderFinished, setOrderFinished] = useState(false);
-    const [processingOrder, setProcessingOrder] = useState(false)
+    const [processingOrder, setProcessingOrder] = useState(false);
+    const [codeNumberOrder, setCodeNumberOrder] = useState("");
     const [contact, setContact] = useState({
         name: '',
         phone: '',
@@ -35,7 +37,7 @@ const Cart = () => {
             contact.comment !== '' && 
             contact.name !== ''
             ) {
-            setProcessingOrder(true)
+            setProcessingOrder(true);
                 
     const objOrder = {
         buyer: contact,
@@ -49,41 +51,31 @@ const Cart = () => {
 
     const executeOrder = () => {
         if (outOfStock.length === 0) {
-          addDoc(collection(firestoreDb, "orders"), objOrder)
-            .then(({ id }) => {
+          addDoc(collection(firestoreDb, 'orders'), objOrder).then(({ id }) => {
               batch.commit().then(() => {
                 clearCart();
-                setNotification(
-                  "success",
-                  `La orden se generó exitosamente con el número: ${id}`
-                );
+                setNotification("success", `La orden se generó exitosamente con el número: ${id}`);
                 setOrderFinished(true);
+                setCodeNumberOrder(id);
               });
-            })
-            .catch((error) => {
-              setNotification("error", error);
-            })
-            .finally(() => {
+            }).catch((error) => {
+              setNotification('error', error);
+            }).finally(() => {
               setProcessingOrder(false);
             });
         } else {
           outOfStock.forEach((prod) => {
-            setNotification(
-              "error",
-              `El producto ${prod} no tiene stock`
-            );
+            setNotification('error', `El producto ${prod} no tiene stock`);
             removeItem(prod);
           });
         }
       };
 
       objOrder.items.forEach((prod) => {
-        getDoc(doc(firestoreDb, "cart", prod.item.id))
-          .then((response) => {
+        getDoc(doc(firestoreDb, 'cart', prod.id)).then((response) => {
             if (response.data().stock >= prod.quantity) {
-              batch.update(doc(firestoreDb, "cart", response.id), {
-                stock: response.data().stock - prod.quantity,
-              });
+              batch.update(doc(firestoreDb, 'cart', response.id), {
+                stock: response.data().stock - prod.quantity});
             } else {
               outOfStock.push(response.data().album);
             }
@@ -99,10 +91,7 @@ const Cart = () => {
           });
       });
     } else {
-      setNotification(
-        "error",
-        "Debe completar los datos de contacto para generar la orden"
-      );
+      setNotification('error', "Debe completar los datos de contacto para generar su orden");
     }
   };
 
@@ -113,48 +102,59 @@ const Cart = () => {
   if (cart.length === 0 && orderFinished === false) {
     return (
       <div>
-        <h1>Cart</h1>
+        
         <h2>No hay productos en el carrito</h2>
       </div>
     );
   } else if (orderFinished === true) {
     return (
-      <div>
-        <h1>Cart</h1>
-        <h2>Su orden se ha generado exitosamente</h2>        
+      <div>        
+        <h2>Su orden se ha generado con éxito</h2>
+        {codeNumberOrder !== "" && (
+          <h3>Su código de orden es: {codeNumberOrder}</h3>
+        )}
+        <NavLink to="/">
+        <button className='item-button'>Volver al inicio</button>
+        </NavLink>        
       </div>
     );
   }
 
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className="cartContainer">
+       <div className="carrito">
+          <div className="carritoCerrado">
+      <h1 className="textCart">Mi Carrito</h1>
       {       
             cart.map (prod => {
                 return ( 
                     <div key={prod.id}>                    
-                        <h3>{prod.name}</h3>
+                        <h3 className="product-name">{prod.name}</h3>
                         <img className="imgCart" src={prod.img}/>
-                        <p className='product-price'>${prod.price}</p>          
+                        <p className="product-price">${prod.price}</p>          
                         <div>
-                        {/* <button onClick={() => getQuantity (prod.id) }><FaArrowUp/></button> */}
+                        {/* {<button onClick={() => addQuantity (prod.id) }><FaArrowUp/></button>} */}
                         <h3>Cantidad {prod.quantity}</h3>
                         {/* <button className="arrow"><FaArrowDown/></button> */}
                         </div>
                         <div className="removeItem">
-                        <button onClick={() => removeItem (prod.id)}><FaTrashAlt/></button>                    
+                        <button onClick={() => removeItem (prod.id)}><FaTrashAlt className="icon"/></button>                    
                         </div>                    
                     </div>                                   
                 )
-            })}            
+            })}
+                   
+
     <div className="footerCart">
-      <h3>Total: ${getTotalPrice()}</h3>
-      <button onClick={() => clearCart()} className="btn">
+      <h3 className="totalPrice">Total: ${getTotalPrice()}</h3>
+      <button onClick={() => clearCart()} className="btnClear">
         Cancelar compra
       </button>
-      <button onClick={() => confirmOrder()} className="btn">
+      <button onClick={() => confirmOrder()} className="btnConfirm">
         Confirmar Compra
       </button>
+      </div>
+        </div>
       {contact.phone !== "" &&
         contact.address !== "" &&
         contact.comment !== "" &&
@@ -193,6 +193,8 @@ const Cart = () => {
       </Togglable>
     </div>
     </div>
+
+    
   );
 };
 

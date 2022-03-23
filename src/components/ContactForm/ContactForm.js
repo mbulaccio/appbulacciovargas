@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './ContactForm.css' 
 
 const ContactForm = ({ toggleVisibility, setContact }) => {
     const [name, setName] = useState('')
@@ -25,9 +26,9 @@ const ContactForm = ({ toggleVisibility, setContact }) => {
 
     return (
         <div className='ContactContainer'>
-          <div>Contacto</div>
+          <div>Completá tus datos</div>
           <form className='ContactForm' onSubmit={handleContactForm}>
-            <label className='LabelContact'>Nombre:
+            <label className='LabelContact'>Nombre y Apellido:
               <input
                 className='InputContact'
                 type='text'
@@ -43,7 +44,7 @@ const ContactForm = ({ toggleVisibility, setContact }) => {
                 onChange={({ target }) => setPhone(target.value)}
               />
             </label>
-            <label className='LabelContact'>Direccion:
+            <label className='LabelContact'>Dirección:
               <input
                 className='InputContact'
                 type='text'
@@ -51,7 +52,7 @@ const ContactForm = ({ toggleVisibility, setContact }) => {
                 onChange={({ target }) => setAddress(target.value)}
               />
             </label>
-            <label className='LabelContact'>Comentario: 
+            <label className='LabelContact'>Comentarios: 
               <input
                 className='InputContact'
                 type='text'
@@ -59,7 +60,7 @@ const ContactForm = ({ toggleVisibility, setContact }) => {
                 onChange={({ target }) => setComment(target.value)}
               />
             </label>
-            <button className='Button' type='submit'>Confirmar</button>
+            <button className='btn' type='submit'>Confirmar</button>
           </form>
         </div>
       )

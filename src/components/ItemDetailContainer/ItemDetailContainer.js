@@ -6,7 +6,7 @@ import { firestoreDb } from '../../services/firebase/firebase'
 
 
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState() //Hacer el estado con la funcion que retorne todo el producto
+    const [product, setProduct] = useState() 
     const [loading, setLoading] = useState(true)
 
     const {productId} = useParams()

@@ -1,4 +1,6 @@
 .cartContainer {
+    display: flex;
+    flex-wrap: wrap;
     position: fixed;
     top: 0;
     left: 0;
@@ -28,19 +30,20 @@
     /* visibility: hidden; */
 }
 
-.carrito h2{
+.textCart {
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
+    color: black;
 }
 
-.closeButton {
+/* .closeButton {
     display: inline-block;
     width: 50px;
     height: 50px;
     cursor: pointer;
     transform: all 300ms ease-in-out;
     margin: 1rem 0 0 1rem
-}
+} */
 
 .carritoCenter{
     width: 98%;
@@ -67,7 +70,13 @@
     font-size: 1.5rem;
 }
 
-.itemsCarrito .price{    
+.product-name  {    
+    font-size: 2rem;    
+    text-align: start;
+    margin-left: -0.1rem ;
+}
+
+.product-price {    
     font-size: 2rem;    
     text-align: start;
     margin-left: -0.1rem ;
@@ -85,7 +94,7 @@
     font-weight: bold;
 }
 
-.remove { /*Cambiar estilos para la entrega final*/
+.removeItem { /*Cambiar estilos para la entrega final*/
     width: 60px;
     height: 80px;    
     margin-top: 2rem;
@@ -94,19 +103,21 @@
 .totalPrice {
     font-size: 24px;
     background: rgb(3, 11, 48);
-    
-
 }
+
 .footerCart{
     text-align: center;
     margin-bottom: 3rem;
 }
+
 .footerCart h3{
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
+    color: white;
 }
-.footerCart .btn{
+
+.btnClear {
     display: inline-block;
     padding: 10px 10px 10px 30px; 
     margin-top: 10px;
@@ -116,4 +127,21 @@
     border: 0;
     outline: 0;
     cursor: pointer;
+}
+
+.btnConfirm {
+    display: inline-block;
+    padding: 10px 10px 10px 30px; 
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 1.5rem;
+    background-color: rgb(72, 72, 155);
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+
+.icon {
+    font-size: 14px;
 }

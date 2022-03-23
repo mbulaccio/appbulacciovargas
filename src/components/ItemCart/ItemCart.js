@@ -4,14 +4,10 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { FaArrowUp } from 'react-icons/fa';
 import { FaArrowDown } from 'react-icons/fa';
 import { FaRegWindowClose } from 'react-icons/fa';
-import { products } from "../../asyncmock";
-import ItemCount from "../ItemCount/ItemCount";
-
-
-const itemCart = ({ products }) => {
 
 
 
+const itemCart = ({ product }) => {
 
 return (
     <div className="cartContainer">
@@ -110,3 +106,5 @@ return (
         </div>
     </div>
 )*/
+
+export default itemCart

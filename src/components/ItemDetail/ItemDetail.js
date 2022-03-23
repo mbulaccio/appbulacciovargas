@@ -6,9 +6,9 @@ import { CartContext } from "../../CartContext/CartContext";
 
 const ItemDetail = ({ product }) => {
     const [quantity, setQuantity] = useState(0);
-    const {addItem} = useContext(CartContext); // Importamos la función de Context
+    const {addItem} = useContext(CartContext); 
 
-    const onAdd = (quantity) => {
+const onAdd = (quantity) => {
       setQuantity (quantity);      
       addItem(product, quantity);
     };    
@@ -22,8 +22,9 @@ const ItemDetail = ({ product }) => {
                 <p className="Info">Descripción: {product.description}</p>
                 <h2 className='product-price'>${product.price}</h2>              
                 <br />
+                <footer className="ItemFooter">
                 {quantity === 0 ? (
-                  <ItemCount stock={product.stock} onAdd={onAdd} />
+                  <ItemCount initial={1} stock={20} onAdd={onAdd} />
                   ) : (
                 <Link to="/cart">
                 <button className='item-button'>Ver carrito</button>
@@ -31,7 +32,8 @@ const ItemDetail = ({ product }) => {
               <br /> <br />
               <Link to="/">
                 <button className='item-button'>Volver al inicio</button>
-              </Link> 
+              </Link>
+              </footer> 
             </div>
         </div>
     )

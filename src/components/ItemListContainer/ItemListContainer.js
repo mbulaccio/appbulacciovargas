@@ -22,10 +22,10 @@ const ItemListContainer = () => {
 
         getDocs(collectionRef).then(response => { // Le pedimos a fire que nos traiga la colección de productos
             const products = response.docs.map(doc => {  // La respuesta la formateamos
-                console.log(doc)
+                
                 return { id: doc.id, ...doc.data()}     // y la retorna con la propiedad id y doc.data
              })
-               console.log(products)
+               
                setProducts(products)   // Set products de mi estado             
                 
         }).finally(() => {

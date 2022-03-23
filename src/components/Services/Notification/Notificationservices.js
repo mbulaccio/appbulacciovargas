@@ -44,7 +44,7 @@ export const NotificationServicesProvider = ({children}) => {
         setSeverity(severity)
         setTimeout(() => {
             setMessage('')
-        }, 5000)
+        }, 3000)
     }
 
     return (
@@ -58,3 +58,5 @@ export const NotificationServicesProvider = ({children}) => {
 export const useNotificationServices = () => {
     return useContext(NotificationContext)
 }
+
+export default NotificationServicesProvider

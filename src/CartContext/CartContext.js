@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 
 export const CartContext = createContext(); // Envolvemos la aplicacion
@@ -7,10 +7,7 @@ export const CartContextProvider = ({children}) => { // Recibimos como parámetr
 
     const [cart, setCart] = useState ([]); // Inicializamos con un array vacío    
 
-    useEffect(() => {
-        console.log(cart);
-    }, [cart]);
-
+    
     const addItem = (item, quantity) => { // Función que le voy a pasar mi ItemDetail para que me traiga el producto y cantidad
         isInCart(item.id)  // Si el producto ya se encuentra en el carrito
             ? addQuantity (item, quantity)   
