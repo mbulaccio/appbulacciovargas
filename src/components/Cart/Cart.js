@@ -1,9 +1,6 @@
 import React, { useContext, useState, useRef } from "react"
 import './Cart.css'
 import { FaTrashAlt } from 'react-icons/fa';
-//import { FaArrowUp } from 'react-icons/fa';
-//import { FaArrowDown } from 'react-icons/fa';
-//import { FaRegWindowClose } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import CartContext from '../../CartContext/CartContext';
 import { writeBatch, getDoc, doc, addDoc, collection, Timestamp } from 'firebase/firestore';
@@ -11,7 +8,7 @@ import { firestoreDb } from '../../services/firebase/firebase';
 import { useNotificationServices } from "../Services/Notification/Notificationservices"
 import ContactForm from "../ContactForm/ContactForm";
 import Togglable from "../Togglable/Togglable";
-import { NavLink } from "react-router-dom";
+
 
 const Cart = () => {
     const [orderFinished, setOrderFinished] = useState(false);
@@ -53,8 +50,7 @@ const Cart = () => {
         if (outOfStock.length === 0) {
           addDoc(collection(firestoreDb, 'orders'), objOrder).then(({ id }) => {
               batch.commit().then(() => {
-                clearCart();
-                setNotification("success", `La orden se generó exitosamente con el número: ${id}`);
+                clearCart();                
                 setOrderFinished(true);
                 setCodeNumberOrder(id);
               });
@@ -96,26 +92,25 @@ const Cart = () => {
   };
 
   if (processingOrder) {
-    return <h1>Se esta procesando su orden...</h1>;
+    return <h2 className="messageOrder">Se esta procesando su orden...</h2>;
   }
 
   if (cart.length === 0 && orderFinished === false) {
     return (
-      <div>
-        
-        <h2>No hay productos en el carrito</h2>
+      <div>        
+        <h2 className="messageOrder">No hay productos en el carrito</h2>
       </div>
     );
   } else if (orderFinished === true) {
     return (
-      <div>        
-        <h2>Su orden se ha generado con éxito</h2>
+      <div className="bodyOrder">        
+        <h2 className="messageOrder">¡Gracias por su compra!<br/> Su orden se ha generado con éxito</h2>
         {codeNumberOrder !== "" && (
-          <h3>Su código de orden es: {codeNumberOrder}</h3>
+          <h3 className="messageOrder">Su código de orden es: {codeNumberOrder}</h3>
         )}
-        <NavLink to="/">
-        <button className='item-button'>Volver al inicio</button>
-        </NavLink>        
+        <Link to="/">
+        <button className='btnBack'>Volver al inicio</button>
+        </Link>        
       </div>
     );
   }
@@ -129,13 +124,11 @@ const Cart = () => {
             cart.map (prod => {
                 return ( 
                     <div key={prod.id}>                    
-                        <h3 className="product-name">{prod.name}</h3>
+                        <h3 className="productName">{prod.name}</h3>
                         <img className="imgCart" src={prod.img}/>
                         <p className="product-price">${prod.price}</p>          
-                        <div>
-                        {/* {<button onClick={() => addQuantity (prod.id) }><FaArrowUp/></button>} */}
-                        <h3>Cantidad {prod.quantity}</h3>
-                        {/* <button className="arrow"><FaArrowDown/></button> */}
+                        <div>                        
+                        <h3>Cantidad {prod.quantity}</h3>                        
                         </div>
                         <div className="removeItem">
                         <button onClick={() => removeItem (prod.id)}><FaTrashAlt className="icon"/></button>                    
@@ -155,21 +148,20 @@ const Cart = () => {
       </button>
       </div>
         </div>
-      {contact.phone !== "" &&
+      {contact.phone !== "" && 
         contact.address !== "" &&
         contact.comment !== "" &&
         contact.name !== "" && (
           <div>
-            <h4>Nombre: {contact.name}</h4>
-            <h4>Telefono: {contact.phone}</h4>
-            <h4>Direccion: {contact.address}</h4>
-            <h4>Comentario: {contact.comment}</h4>
+            <h4 className="dataUser">Nombre: {contact.name}</h4>
+            <h4 className="dataUser">Telefono: {contact.phone}</h4>
+            <h4 className="dataUser">Direccion: {contact.address}</h4>
+            <h4 className="dataUser">Comentario: {contact.comment}</h4>
             <button
               onClick={() =>
                 setContact({ phone: "", address: "", comment: "" })
               }
-              className="btn"
-              style={{ backgroundColor: "#db4025" }}
+              className="btnClear"              
             >
               Borrar datos de contacto
             </button>
@@ -177,7 +169,7 @@ const Cart = () => {
         )}
       <Togglable
         buttonLabelShow={
-          contact.phone !== "" &&
+          contact.phone !== "" &&           
           contact.address !== "" &&
           contact.comment !== "" &&
           contact.name !== ""

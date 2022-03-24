@@ -22,18 +22,18 @@ const onAdd = (quantity) => {
                 <p className="Info">Descripción: {product.description}</p>
                 <h2 className='product-price'>${product.price}</h2>              
                 <br />
-                <footer className="ItemFooter">
-                {quantity === 0 ? (
+                  <footer className="ItemFooter">
+                  {quantity === 0 ? (
                   <ItemCount initial={1} stock={20} onAdd={onAdd} />
                   ) : (
-                <Link to="/cart">
-                <button className='item-button'>Ver carrito</button>
-              </Link>)}
-              <br /> <br />
-              <Link to="/">
-                <button className='item-button'>Volver al inicio</button>
-              </Link>
-              </footer> 
+                  <Link to="/cart">
+                  <button className='item-button'>Ver carrito</button>
+                  </Link>)}
+                  <br /> <br />
+                  <Link to="/">
+                  <button className='item-button'>Volver al inicio</button>
+                  </Link>
+                  </footer> 
             </div>
         </div>
     )

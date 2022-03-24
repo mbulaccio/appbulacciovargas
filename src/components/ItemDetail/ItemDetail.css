@@ -7,7 +7,7 @@
 
 .ItemDetailCart{
   width: 400px;
-  height: 1000px;
+  height: 700px;
   border: 1px solid #090e4e;
   border-radius: 5px;
   overflow: hidden;  
@@ -37,5 +37,5 @@
   font-size: 1rem;
   color: white;
   font-weight: 200;
-  }
+}
 

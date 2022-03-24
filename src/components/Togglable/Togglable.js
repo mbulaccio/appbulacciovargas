@@ -1,4 +1,5 @@
 import { useState, useImperativeHandle, forwardRef } from "react";
+import './Togglable.css'
 
 const Togglable = forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false);
@@ -19,7 +20,7 @@ const Togglable = forwardRef((props, ref) => {
   return (
     <div>
       <div style={hideWhenVisible}>
-        <button className="Button" style={{ backgroundColor: "#219c0b" }}
+        <button className="buttonTogglable"
           onClick={toggleVisibility}
         >
           {props.buttonLabelShow}

@@ -24,10 +24,10 @@ Al usuario realizar una compra, se creará la colección orden.
 
 # Rutas:
 
-- categoryId: Renderiza el componente ItemListContainer y muestra los productos por categoría
-- productId: Renderiza el componente ItemDetailContainer y muestra el detalle del producto
+- categoryId: Renderiza el componente ItemListContainer y muestra los productos por categoría.
+- productId: Renderiza el componente ItemDetailContainer y muestra el detalle del producto.
 - '/Cart': Renderiza el componente Cart y muestra el carrito con los productos que añade el usuario.  
 
 Mostrar el video... 
 
-_Nota: BistreaShop existe pero tengo el permiso de mi hermana para utilizar su marca y productos para mi proyecto_
+_Nota: BistreaShop existe pero tengo el permiso de mi hermana para utilizar su marca y productos para mi proyecto._

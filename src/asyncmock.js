@@ -37,17 +37,3 @@ export const getCategories = () => {
     })
 }
 
-/*export const getProducts = () => { //Simula llamada a una API
-    return new Promise((resolve) => { // Retorna una promesa y recibe como parámetro resolve
-        setTimeout(() => {
-            resolve(products) // Devuelve los productos
-        }, 1000) // En 2 segundos
-    })
-}
-export const getProduct = () => { //Simula llamada a una API
-    return new Promise((resolve) => { // Retorna una promesa y recibe como parámetro resolve
-        setTimeout(() => {
-            resolve(products[0]) // Devuelve los productos
-        }, 1000) // En 2 segundos
-    })
-}*/

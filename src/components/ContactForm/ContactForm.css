@@ -3,10 +3,9 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
-    color: rgb(68, 2, 2);
-    background-color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: 20px;
+    color: black;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -14,3 +13,18 @@
     justify-content: space-between;
     align-items: end;
   }
+
+  .btn{   
+    
+    text-align: center;        
+    width: 30%;      
+    font-size: 1.5rem;
+    color: white;
+    margin-left: 35%;    
+    background-color: rgb(72, 72, 155);
+    margin-top: 20px;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;       
+    
+}
