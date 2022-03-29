@@ -1,24 +1,25 @@
 import { createContext, useState } from "react";
 
 
-export const CartContext = createContext(); // Envolvemos la aplicacion
+export const CartContext = createContext(); 
 
-export const CartContextProvider = ({children}) => { // Recibimos como parámetro un children
+export const CartContextProvider = ({children}) => {
 
-    const [cart, setCart] = useState ([]); // Inicializamos con un array vacío    
+    const [cart, setCart] = useState ([]);  
 
     
-    const addItem = (item, quantity) => { // Función que le voy a pasar mi ItemDetail para que me traiga el producto y cantidad
-        isInCart(item.id)  // Si el producto ya se encuentra en el carrito
+    const addItem = (item, quantity) => { 
+        isInCart(item.id)  
             ? addQuantity (item, quantity)   
-            : setCart([...cart, { ...item, quantity}]); // Aplicamos el operador spread para acumular productos y cantidades en el carrito
+            : setCart([...cart, { ...item, quantity}]); 
     };
 
     const isInCart = (id) => { 
-        return cart.some((product) => product.id === id); // Revisamos si el producto está en el carrito        
-    };   
+        return cart.some((product) => product.id === id);         
+    }; 
     
-    const addQuantity = (item, quantity) => { // Sumamos cantidades de productos
+        
+    const addQuantity = (item, quantity) => { 
         const newProducts = cart.map((product) => {
             if (product.id === item.id) {
                 const newProduct = {
@@ -33,12 +34,12 @@ export const CartContextProvider = ({children}) => { // Recibimos como parámetr
         setCart(newProducts);
     };
 
-    const removeItem = (id) => { // Removemos los items
+    const removeItem = (id) => { 
         const filtItems = cart.filter ((product) => product.id !== id)
         setCart(filtItems)  
     }
 
-    const clearCart = () => {// Limpiamos los items
+    const clearCart = () => {
         setCart ([])
     }
     

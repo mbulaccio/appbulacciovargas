@@ -7,7 +7,7 @@ const Item = ({ product }) => { /*ESTAS SON LAS CARTS DE MI INICIO*/
     return (
         <div className="cart-container">        
             <div className="ItemCart">
-                <h1 className="NameCart">{product.name}</h1>
+                <h1 className="nameProduct">{product.name}</h1>
                 <div className='ImgCart'><img src={product.img}/> 
             </div>
             <div className='productFooter'>               

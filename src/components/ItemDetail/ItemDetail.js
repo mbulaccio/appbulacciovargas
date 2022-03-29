@@ -16,7 +16,7 @@ const onAdd = (quantity) => {
     return (
         <div className="cart-container-detail"> 
             <div className="ItemDetailCart">
-                <h1 className="NameCart">{product.name}</h1>
+                <h1 className="nameProduct">{product.name}</h1>
                 <img className="ImgCart" src={product.img}/> 
                 <p className="Info">Categoría: {product.category}</p>
                 <p className="Info">Descripción: {product.description}</p>
@@ -24,7 +24,7 @@ const onAdd = (quantity) => {
                 <br />
                   <footer className="ItemFooter">
                   {quantity === 0 ? (
-                  <ItemCount initial={1} stock={20} onAdd={onAdd} />
+                  <ItemCount stock={product.stock} initial={1} onAdd={onAdd} />
                   ) : (
                   <Link to="/cart">
                   <button className='item-button'>Ver carrito</button>

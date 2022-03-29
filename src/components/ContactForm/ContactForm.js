@@ -26,7 +26,7 @@ const ContactForm = ({ toggleVisibility, setContact }) => {
 
     return (
         <div className='ContactContainer'>
-          <div>Completá tus datos</div>
+          <div className='completData'>Completá tus datos:</div>
           <form className='ContactForm' onSubmit={handleContactForm}>
             <label className='LabelContact'>Nombre y Apellido:
               <input

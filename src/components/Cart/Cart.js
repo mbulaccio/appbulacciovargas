@@ -60,7 +60,7 @@ const Cart = () => {
               setProcessingOrder(false);
             });
         } else {
-          outOfStock.forEach((prod) => {
+          outOfStock.forEach(prod => {
             setNotification('error', `El producto ${prod} no tiene stock`);
             removeItem(prod);
           });
@@ -87,7 +87,7 @@ const Cart = () => {
           });
       });
     } else {
-      setNotification('error', "Debe completar los datos de contacto para generar su orden");
+      setNotification('error', "Completá tus datos de contacto para generar la orden");
     }
   };
 

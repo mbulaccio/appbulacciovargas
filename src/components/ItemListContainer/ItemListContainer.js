@@ -20,13 +20,13 @@ const ItemListContainer = () => {
             query(collection(firestoreDb, 'products'), where('category', '==', categoryId)) :
             collection(firestoreDb, 'products')
 
-        getDocs(collectionRef).then(response => { // Le pedimos a fire que nos traiga la colección de productos
-            const products = response.docs.map(doc => {  // La respuesta la formateamos
+        getDocs(collectionRef).then(response => { 
+            const products = response.docs.map(doc => { 
                 
-                return { id: doc.id, ...doc.data()}     // y la retorna con la propiedad id y doc.data
+                return { id: doc.id, ...doc.data()}     
              })
                
-               setProducts(products)   // Set products de mi estado             
+            setProducts(products)         
                 
         }).finally(() => {
             setLoading(false)
@@ -46,7 +46,7 @@ const ItemListContainer = () => {
             products.length ?
             <ItemList products = {products}/>: 
             <h1>No hay stock</h1> 
-        } 
+            } 
         </div>
     )
 }

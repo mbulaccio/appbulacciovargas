@@ -10,7 +10,7 @@ Visual Studio Code utilizando React JS, React Hooks, React Router y Firebase Goo
 
 Para inicializar el proyecto se debe realizar lo siguiente: 
 
-- Clonar el repositorio en github.
+- Clonar el repositorio en github: https://github.com/mbulaccio/appbulacciovargas.git
 - Ir al directorio.
 - Instalar las dependencias: npm install
 - Levantar el server: npm start
