@@ -6,6 +6,8 @@
 El proyecto final consiste en el desarrollo de una e-commerce realizado en 
 Visual Studio Code utilizando React JS, React Hooks, React Router y Firebase Google.
 
+[Alt text] (video.gif)
+
 # Inicialización del proyecto:
 
 Para inicializar el proyecto se debe realizar lo siguiente: 
